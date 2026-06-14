@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melasti Beach — Bali's Southernmost Paradise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald:     #1a4a3c;
+      --leaf:        #2d7a5f;
+      --seafoam:     #5cb891;
+      --mist:        #d4ede4;
+      --white:       #f9fdf9;
+      --snow:        #ffffff;
+      --sand:        #f2ece0;
+      --text-dark:   #0f2e22;
+      --text-mid:    #3a5a4a;
+      --text-light:  #6b8f7e;
+      --accent-gold: #c8a96e;
+      --radius:      12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(249,253,249,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(93,184,145,0.15);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(26,74,60,0.08); }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--emerald);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--seafoam); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--leaf); }
+
+    .nav-cta {
+      background: var(--emerald);
+      color: var(--snow) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--leaf) !important; color: var(--snow) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(15,46,34,0.2) 0%, rgba(15,46,34,0.55) 100%),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Melasti_Beach%2C_Bali%2C_2014.jpg/1280px-Melasti_Beach%2C_Bali%2C_2014.jpg')
+        center/cover no-repeat;
+    }
+
+    /* Fallback gradient for hero if image fails */
+    .hero-bg-fallback {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, var(--emerald) 0%, var(--leaf) 40%, var(--seafoam) 100%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 6vw 8vh;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--snow);
+      margin-bottom: 1.4rem;
+    }
+    .hero-title em { font-style: italic; color: var(--mist); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--seafoam);
+      color: var(--snow);
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--leaf); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      color: var(--snow);
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--seafoam); background: rgba(93,184,145,0.12); }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 5vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--emerald);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide: solid;
+    }
+    .stat {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--seafoam);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6vw; }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--emerald);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; }
+    .section-desc {
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 620px;
+      font-size: 1.02rem;
+    }
+
+    /* ── ABOUT / INTRO ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-text { }
+    .about-image-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px -12px auto auto;
+      width: 80%;
+      height: 80%;
+      background: var(--mist);
+      border-radius: var(--radius);
+      z-index: -1;
+    }
+    .about-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: -1.5rem;
+      background: var(--snow);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      box-shadow: 0 8px 32px rgba(26,74,60,0.12);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .badge-icon { font-size: 1.8rem; }
+    .badge-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--emerald);
+      font-weight: 500;
+    }
+    .badge-text span {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ── ATTRACTIONS ── */
+    .attractions { background: var(--sand); }
+    .attractions-inner { max-width: 1200px; margin: 0 auto; }
+    .attractions-header { margin-bottom: 3.5rem; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--snow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(26,74,60,0.12);
+    }
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: var(--mist);
+    }
+    .card-img-placeholder {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .card-body { padding: 1.5rem; }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      margin-bottom: 0.5rem;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 0.6rem;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── GALLERY STRIP ── */
+    .gallery {
+      padding: 0;
+      background: var(--emerald);
+    }
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 300px 300px;
+      gap: 3px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* placeholder tiles */
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 2.5rem;
+    }
+    .gallery-placeholder span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── AMENITIES ── */
+    .amenities-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    .amenity-group-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--mist);
+    }
+    .amenity-list { list-style: none; }
+    .amenity-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--mist);
+    }
+    .amenity-list li:last-child { border-bottom: none; }
+    .amenity-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      background: var(--mist);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .amenity-info strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 0.2rem;
+    }
+    .amenity-info span {
+      font-size: 0.83rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ── ACCOMMODATION ── */
+    .accommodation { background: var(--mist); }
+    .accom-inner { max-width: 1200px; margin: 0 auto; }
+    .accom-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .accom-card {
+      background: var(--snow);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .accom-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(26,74,60,0.1);
+    }
+    .accom-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--leaf), var(--seafoam));
+    }
+    .accom-tier {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      margin-bottom: 0.8rem;
+    }
+    .accom-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 0.8rem;
+    }
+    .accom-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .accom-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .feature-pill {
+      background: var(--mist);
+      color: var(--emerald);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 50px;
+    }
+    .accom-price {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    .accom-price strong {
+      color: var(--leaf);
+      font-size: 1rem;
+    }
+
+    /* ── LOCATION ── */
+    .location-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .location-map-embed {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(26,74,60,0.12);
+      height: 380px;
+      background: var(--mist);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+    }
+    .location-map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .directions-list { list-style: none; margin-top: 2rem; }
+    .direction-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--mist);
+    }
+    .direction-item:last-child { border-bottom: none; }
+    .direction-from {
+      min-width: 36px;
+      height: 36px;
+      background: var(--emerald);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--snow);
+      font-weight: 500;
+    }
+    .direction-info strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 0.2rem;
+    }
+    .direction-info span {
+      font-size: 0.83rem;
+      color: var(--text-light);
+    }
+
+    /* ── ENTRANCE INFO ── */
+    .info-band {
+      background: linear-gradient(135deg, var(--emerald), var(--leaf));
+      padding: 4rem 6vw;
+    }
+    .info-band-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .info-item .icon {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+    }
+    .info-item strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--snow);
+      margin-bottom: 0.3rem;
+    }
+    .info-item span {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    /* ── TIPS ── */
+    .tips { background: var(--sand); }
+    .tips-inner { max-width: 1000px; margin: 0 auto; }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .tip-card {
+      background: var(--snow);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      border-left: 3px solid var(--seafoam);
+    }
+    .tip-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--emerald);
+      margin-bottom: 0.6rem;
+    }
+    .tip-card p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.65);
+      padding: 3rem 6vw 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--snow);
+      margin-bottom: 0.8rem;
+    }
+    .footer-brand span { color: var(--seafoam); }
+    .footer-about { font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h5 {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--seafoam); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      font-size: 0.78rem;
+    }
+    .footer-bottom a {
+      color: var(--seafoam);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .about-grid, .location-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards-grid, .accom-cards { grid-template-columns: 1fr 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .amenities-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .info-band-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .gallery-strip {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .gallery-item:first-child { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 5vw; }
+      .cards-grid, .accom-cards, .tips-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .info-band-inner { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .gallery-strip { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ══ -->
+  <nav id="mainNav">
+    <a class="nav-logo" href="#"><span>Melasti</span> Beach</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#attractions">Attractions</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#accommodation">Stay</a></li>
+      <li><a href="#location" class="nav-cta">Get Directions</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-fallback"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">🌿 Bukit Peninsula · Bali, Indonesia</span>
+      <h1 class="hero-title">
+        Bali's<br><em>Southernmost</em><br>Paradise
+      </h1>
+      <p class="hero-sub">
+        Where towering limestone cliffs meet a 1-kilometre sweep of ivory sand — 
+        Melasti Beach is the island's most accessible and breathtaking coastal gem.
+      </p>
+      <div class="hero-actions">
+        <a href="#attractions" class="btn-primary">Explore the Beach</a>
+        <a href="#location" class="btn-ghost">How to Get There</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ══ STATS BAR ══ -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-number">1 km</span>
+      <span class="stat-label">White Sand Shoreline</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">12+</span>
+      <span class="stat-label">Beach Clubs & Warungs</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">Free</span>
+      <span class="stat-label">Toilets & Showers</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">~30°</span>
+      <span class="stat-label">Water Temperature °C</span>
+    </div>
+  </div>
+
+  <!-- ══ ABOUT ══ -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">About the Beach</p>
+        <h2 class="section-title">A Sacred Shore at the <em>Edge of Bali</em></h2>
+        <p class="section-desc">
+          Pantai Melasti (Melasti Beach) sits at the very southern tip of the Bukit Peninsula, 
+          marking the southernmost reach of Bali. Its name is drawn from the sacred Balinese 
+          Melasti ritual — a ceremony of purification performed before Nyepi Day — a fitting name 
+          for a beach that cleanses the soul with every visit.
+        </p>
+        <br/>
+        <p class="section-desc">
+          Once a hidden gem concealed behind dramatic limestone cliffs with difficult access, 
+          Melasti has since blossomed into one of Bali's most beloved stretches of coastline. 
+          Today, a scenic paved road winds through the cliffs, opening onto a broad sweep of 
+          powder-white sand, crystal-clear turquoise water, and the endless blue of the Indian Ocean.
+        </p>
+        <br/>
+        <p class="section-desc">
+          Unlike most Uluwatu beaches accessible only by steep staircases, you can drive 
+          right to the beachfront — a rare convenience that doesn't diminish its wild beauty 
+          one bit.
+        </p>
+      </div>
+      <div class="about-image-wrap">
+        <img
+          class="about-img"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Melasti_Beach%2C_Bali%2C_2014.jpg/800px-Melasti_Beach%2C_Bali%2C_2014.jpg"
+          alt="Panoramic view of Melasti Beach with limestone cliffs"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div style="display:none; width:100%; height:420px; background:var(--mist); border-radius:var(--radius); align-items:center; justify-content:center; font-size:4rem;">🏖️</div>
+        <div class="about-badge">
+          <span class="badge-icon">🌊</span>
+          <div class="badge-text">
+            <strong>Indian Ocean</strong>
+            <span>Calm turquoise waters</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ATTRACTIONS ══ -->
+  <section class="attractions" id="attractions">
+    <div class="attractions-inner">
+      <div class="attractions-header">
+        <p class="section-eyebrow">What to Do</p>
+        <h2 class="section-title">Attractions &amp; <em>Activities</em></h2>
+        <p class="section-desc">
+          From crystal-clear swimming to golden-hour photography, Melasti rewards every 
+          kind of visitor with its natural drama and laid-back charm.
+        </p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#b2e0cc,#5cb891);">🏊</div>
+          <div class="card-body">
+            <p class="card-tag">Water Activity</p>
+            <h3 class="card-title">Swimming &amp; Floating</h3>
+            <p class="card-desc">
+              The calm, turquoise waters of Melasti are ideal for swimming. During low tide, 
+              natural rock pools form near the shore — perfect for sitting and soaking in the 
+              scenery. The gentle waves make it safe for most visitors.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#c8e6d0,#a8d5b5);">📸</div>
+          <div class="card-body">
+            <p class="card-tag">Photography</p>
+            <h3 class="card-title">Cliff &amp; Scenic Photography</h3>
+            <p class="card-desc">
+              The dramatic limestone cliffs framing the beach are iconic. The winding road 
+              down offers sweeping panoramic shots, while sunrise and sunset paint the cliffs 
+              in amber and gold. Popular for pre-wedding and professional photoshoots.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#d4ede4,#9ed8c0);">🍹</div>
+          <div class="card-body">
+            <p class="card-tag">Beach Club</p>
+            <h3 class="card-title">Beach Clubs &amp; Sunbathing</h3>
+            <p class="card-desc">
+              Rent a sunbed (around IDR 200,000 for two) and settle in for the day. Popular 
+              clubs include Palmilla Bali, White Rock, Sundays, Klive, and Tropical 
+              Temptation — each offering pools, cocktails, and ocean views.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#f9fdf9,#d4ede4);">🌅</div>
+          <div class="card-body">
+            <p class="card-tag">Sunset Experience</p>
+            <h3 class="card-title">Golden Hour &amp; Sunsets</h3>
+            <p class="card-desc">
+              Melt into the magic hour as the sun dips behind the Indian Ocean. The cliffs 
+              glow amber, the water turns to liquid gold, and the beach clubs fill with the 
+              soft hum of music and conversation. One of Bali's finest sunset vantage points.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#b8ddd0,#78c4a8);">🍜</div>
+          <div class="card-body">
+            <p class="card-tag">Local Food</p>
+            <h3 class="card-title">Warungs &amp; Local Bites</h3>
+            <p class="card-desc">
+              Several local warungs (small family eateries) serve fresh Balinese dishes, cold 
+              coconut drinks, and ice-cold Bintang beer right on the beachfront — a perfect 
+              affordable alternative to the beach clubs.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-placeholder" style="background: linear-gradient(135deg,#e8f5ef,#c0e0d2);">🚶</div>
+          <div class="card-body">
+            <p class="card-tag">Exploration</p>
+            <h3 class="card-title">Cliff Walk &amp; Scenic Drive</h3>
+            <p class="card-desc">
+              The scenic access road that winds down through the limestone cliffs is an 
+              attraction in itself. Stop at the viewpoints on the way down for breathtaking 
+              aerial perspectives of the beach and coastline below.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GALLERY ══ -->
+  <div class="gallery">
+    <div class="gallery-strip">
+      <div class="gallery-item">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Melasti_Beach%2C_Bali%2C_2014.jpg/800px-Melasti_Beach%2C_Bali%2C_2014.jpg"
+          alt="Melasti Beach panorama"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="gallery-placeholder" style="background: linear-gradient(135deg, var(--emerald), var(--leaf)); display:none;">
+          🏖️<span>Melasti Shoreline</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder" style="background: linear-gradient(135deg, #2d7a5f, #5cb891);">
+          🌊<span>Turquoise Waters</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder" style="background: linear-gradient(135deg, #1a4a3c, #2d7a5f);">
+          🏔️<span>Limestone Cliffs</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder" style="background: linear-gradient(135deg, #5cb891, #9ed8c0);">
+          🌅<span>Golden Sunset</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder" style="background: linear-gradient(135deg, #3a5a4a, #5cb891);">
+          🍹<span>Beach Clubs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AMENITIES ══ -->
+  <section id="amenities">
+    <div class="amenities-inner">
+      <p class="section-eyebrow">Facilities</p>
+      <h2 class="section-title">Amenities &amp; <em>Facilities</em></h2>
+      <p class="section-desc">
+        Melasti is one of Bali's most well-equipped beaches. Whether you're staying all day 
+        or just stopping for a dip, you'll find everything you need within easy reach.
+      </p>
+
+      <div class="amenities-grid">
+        <div>
+          <h3 class="amenity-group-title">Basic Facilities</h3>
+          <ul class="amenity-list">
+            <li>
+              <div class="amenity-icon">🚻</div>
+              <div class="amenity-info">
+                <strong>Public Toilets</strong>
+                <span>Clean, well-maintained public restrooms available near the main parking area. Typically free or very low cost.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">🚿</div>
+              <div class="amenity-info">
+                <strong>Shower Facilities</strong>
+                <span>Outdoor showers located near the parking zone for rinsing off sand and saltwater after swimming.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">👗</div>
+              <div class="amenity-info">
+                <strong>Changing Rooms</strong>
+                <span>Changing facilities available on-site for swimmers and visitors who need to freshen up.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">🅿️</div>
+              <div class="amenity-info">
+                <strong>Parking Area</strong>
+                <span>Large, well-organised parking lot for both motorbikes and cars directly at the beachfront. Entrance fee ~IDR 33,000 including parking.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">🏪</div>
+              <div class="amenity-info">
+                <strong>Convenience Store</strong>
+                <span>On-site convenience store selling snacks, drinks, sunscreen, and beach essentials.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="amenity-group-title">Food, Drink &amp; Relaxation</h3>
+          <ul class="amenity-list">
+            <li>
+              <div class="amenity-icon">🍜</div>
+              <div class="amenity-info">
+                <strong>Local Warungs</strong>
+                <span>Several family-run warungs serve affordable Balinese and Indonesian food including nasi goreng, grilled seafood, and fresh coconut drinks.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">🍸</div>
+              <div class="amenity-info">
+                <strong>Beach Clubs &amp; Bars</strong>
+                <span>Over a dozen beach clubs (Palmilla, White Rock, Sundays, Klive, Tropical Temptation) with restaurants, bars, pools, and premium loungers.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">☂️</div>
+              <div class="amenity-info">
+                <strong>Sun Loungers &amp; Umbrellas</strong>
+                <span>Rentable sun loungers and umbrellas along the beach. Typically IDR 200,000 for a pair of sunbeds.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">🌐</div>
+              <div class="amenity-info">
+                <strong>WiFi (Beach Clubs)</strong>
+                <span>Most beach clubs offer complimentary WiFi for their guests. Connectivity is generally good throughout the area.</span>
+              </div>
+            </li>
+            <li>
+              <div class="amenity-icon">♿</div>
+              <div class="amenity-info">
+                <strong>Easy Access — No Stairs</strong>
+                <span>Unlike most Uluwatu beaches, Melasti is fully accessible by car or motorbike right to the beachfront — no steep staircases required.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ENTRANCE / HOURS INFO BAND ══ -->
+  <div class="info-band">
+    <div class="info-band-inner">
+      <div class="info-item">
+        <div class="icon">🎫</div>
+        <strong>IDR 33,000</strong>
+        <span>Entrance fee (includes parking for motorbike)</span>
+      </div>
+      <div class="info-item">
+        <div class="icon">🕐</div>
+        <strong>Open 24 Hours</strong>
+        <span>Best visited at sunrise or sunset for magical light</span>
+      </div>
+      <div class="info-item">
+        <div class="icon">📅</div>
+        <strong>April – October</strong>
+        <span>Dry season — best for swimming &amp; clear skies</span>
+      </div>
+      <div class="info-item">
+        <div class="icon">📷</div>
+        <strong>IDR 500,000</strong>
+        <span>Commercial / pre-wedding photoshoot permit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ACCOMMODATION ══ -->
+  <section class="accommodation" id="accommodation">
+    <div class="accom-inner">
+      <p class="section-eyebrow">Where to Stay</p>
+      <h2 class="section-title">Accommodation <em>Near Melasti</em></h2>
+      <p class="section-desc">
+        From clifftop luxury resorts to budget-friendly guesthouses, the Ungasan and 
+        Uluwatu area offers a wide range of stays to suit every traveller.
+      </p>
+
+      <div class="accom-cards">
+
+        <div class="accom-card">
+          <p class="accom-tier">🌟 Luxury</p>
+          <h3 class="accom-name">Anantara Uluwatu Bali</h3>
+          <p class="accom-desc">
+            Perched dramatically on the cliff's edge in Uluwatu with sweeping ocean views, 
+            Anantara offers an infinity pool, spa, fitness centre, multiple restaurants, 
+            bars, and on-site cultural workshops.
+          </p>
+          <div class="accom-features">
+            <span class="feature-pill">Infinity Pool</span>
+            <span class="feature-pill">Spa</span>
+            <span class="feature-pill">Ocean View</span>
+            <span class="feature-pill">Fine Dining</span>
+          </div>
+          <p class="accom-price">From <strong>~IDR 3,500,000</strong> / night</p>
+        </div>
+
+        <div class="accom-card">
+          <p class="accom-tier">🏨 Mid-Range</p>
+          <h3 class="accom-name">Bali Melasti Beach Resort</h3>
+          <p class="accom-desc">
+            Conveniently located in the Legian area, this resort features outdoor swimming 
+            pools, a poolside bar, and sea-facing rooms with terraces and balconies. 
+            Breakfast included in most packages.
+          </p>
+          <div class="accom-features">
+            <span class="feature-pill">3 Outdoor Pools</span>
+            <span class="feature-pill">Breakfast Incl.</span>
+            <span class="feature-pill">Sea View Rooms</span>
+            <span class="feature-pill">Bar</span>
+          </div>
+          <p class="accom-price">From <strong>~IDR 700,000</strong> / night</p>
+        </div>
+
+        <div class="accom-card">
+          <p class="accom-tier">🏡 Private Villa</p>
+          <h3 class="accom-name">Moana Poe Villa</h3>
+          <p class="accom-desc">
+            Just 5 minutes from Melasti Beach, this 3-bedroom luxury villa in Ungasan 
+            combines privacy, serene surroundings, and easy access to the beach for an 
+            unforgettable Bali retreat. Available for daily rental.
+          </p>
+          <div class="accom-features">
+            <span class="feature-pill">Private Villa</span>
+            <span class="feature-pill">3 Bedrooms</span>
+            <span class="feature-pill">5 min to Beach</span>
+            <span class="feature-pill">Full Privacy</span>
+          </div>
+          <p class="accom-price">Contact for <strong>Villa Rates</strong></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LOCATION ══ -->
+  <section id="location">
+    <div class="location-inner">
+      <div>
+        <p class="section-eyebrow">Getting There</p>
+        <h2 class="section-title">Location &amp; <em>Directions</em></h2>
+        <p class="section-desc">
+          Melasti Beach is located in the Ungasan area of the Bukit Peninsula, on Bali's 
+          southern coast. Look for the signposted turnoff near Ungasan village, then follow 
+          the winding scenic road down through the cliffs to the beach.
+        </p>
+        <ul class="directions-list">
+          <li class="direction-item">
+            <div class="direction-from">✈️</div>
+            <div class="direction-info">
+              <strong>From Ngurah Rai Airport</strong>
+              <span>~30–45 minutes by car or scooter. Head south toward Uluwatu via the coastal toll road.</span>
+            </div>
+          </li>
+          <li class="direction-item">
+            <div class="direction-from">🏖️</div>
+            <div class="direction-info">
+              <strong>From Kuta / Legian</strong>
+              <span>~45–60 minutes by scooter or taxi. Take Jalan Uluwatu toward Ungasan.</span>
+            </div>
+          </li>
+          <li class="direction-item">
+            <div class="direction-from">🌴</div>
+            <div class="direction-info">
+              <strong>From Seminyak / Canggu</strong>
+              <span>~1.5 to 2 hours. Head south through Kuta, then continue toward Bukit Peninsula.</span>
+            </div>
+          </li>
+          <li class="direction-item">
+            <div class="direction-from">🛕</div>
+            <div class="direction-info">
+              <strong>From Uluwatu Temple</strong>
+              <span>~10–15 minutes. Head east from the temple toward Ungasan, follow signs to Melasti Beach.</span>
+            </div>
+          </li>
+          <li class="direction-item">
+            <div class="direction-from">🗺️</div>
+            <div class="direction-info">
+              <strong>Coordinates</strong>
+              <span>8°52'25.1"S 115°10'31.2"E — search "Pantai Melasti Ungasan" on Google Maps for turn-by-turn directions.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="location-map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.2!2d115.1753!3d-8.8736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2440a3745b89b%3A0x3b6e8d60a1a0ec0a!2sMelasti+Beach!5e0!3m2!1sen!2sid!4v1699000000000!5m2!1sen!2sid"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Melasti Beach location on Google Maps"
+          ></iframe>
+        </div>
+
+        <div style="margin-top: 1.5rem; background: var(--mist); border-radius: var(--radius); padding: 1.5rem;">
+          <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--emerald); margin-bottom: 1rem;">Nearby Attractions</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <div style="display:flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-mid);">
+              <span>🛕 Uluwatu Temple</span><span style="color: var(--leaf);">~10 min</span>
+            </div>
+            <div style="display:flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-mid);">
+              <span>🏖️ Pandawa Beach</span><span style="color: var(--leaf);">~15 min</span>
+            </div>
+            <div style="display:flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-mid);">
+              <span>🗿 GWK Cultural Park</span><span style="color: var(--leaf);">~20 min</span>
+            </div>
+            <div style="display:flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-mid);">
+              <span>🏝️ Nusa Dua Beach</span><span style="color: var(--leaf);">~20 min</span>
+            </div>
+            <div style="display:flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-mid);">
+              <span>🌊 Dreamland Beach</span><span style="color: var(--leaf);">~15 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TIPS ══ -->
+  <section class="tips" id="tips">
+    <div class="tips-inner">
+      <p class="section-eyebrow">Visitor Tips</p>
+      <h2 class="section-title">Make the Most of <em>Your Visit</em></h2>
+      <p class="section-desc">
+        A few local tips to help you have the perfect Melasti Beach day.
+      </p>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h4>🌤️ Best Time to Visit</h4>
+          <p>Come during the dry season (April–October) for the clearest skies and calmest waters. Early morning visits mean fewer crowds and stunning golden light on the cliffs.</p>
+        </div>
+        <div class="tip-card">
+          <h4>💰 Bring Cash</h4>
+          <p>While beach clubs may accept cards, local warungs and many facilities operate on a cash basis. Bring Indonesian Rupiah (IDR) to cover entrance fees, parking, food, and rentals.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🧴 Pack Essentials</h4>
+          <p>Bring reef-safe sunscreen, swimwear, a towel, and plenty of water. A small bag of cash, your camera, and a change of clothes will set you up perfectly for a full beach day.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🛵 Getting Around</h4>
+          <p>Renting a scooter is the most popular and affordable way to reach Melasti from most parts of Bali. Taxis and ride-hailing apps like Gojek and Grab are also reliable options.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🌊 Swimming Safety</h4>
+          <p>Melasti is one of the safest swimming beaches in Uluwatu thanks to calm conditions, especially during dry season. Always check conditions on arrival and swim between safe zones.</p>
+        </div>
+        <div class="tip-card">
+          <h4>📸 Photography Permit</h4>
+          <p>Planning a professional or pre-wedding photoshoot? A permit (IDR 500,000) is required. Contact the beach management on arrival or arrange in advance for a seamless session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span>Melasti</span> Beach</div>
+        <p class="footer-about">
+          Pantai Melasti — Bali's southernmost paradise. Where ancient limestone cliffs meet 
+          pristine white sands and the endless blue of the Indian Ocean. A sacred shore worth 
+          every journey.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#about">About the Beach</a></li>
+          <li><a href="#attractions">Attractions</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#accommodation">Accommodation</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Info</h5>
+        <ul>
+          <li><a href="#amenities">Entrance: IDR 33,000</a></li>
+          <li><a href="#amenities">Free Toilets &amp; Showers</a></li>
+          <li><a href="#location">Ungasan, Bukit Peninsula</a></li>
+          <li><a href="#tips">Open 24 Hours</a></li>
+          <li><a href="#tips">Best: Apr – Oct</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Melasti Beach Guide · Ungasan, Bali, Indonesia</span>
+      <span>Made with 🌿 for beautiful Bali</span>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Fade-in on scroll for sections
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.card, .accom-card, .tip-card, .amenity-list li, .stat').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
